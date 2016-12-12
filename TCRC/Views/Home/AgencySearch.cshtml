@@ -1,0 +1,82 @@
+﻿@model TCRC.Models.AgencySearchViewModel
+
+<h2>Search For Agencies By City or Zip Code</h2>
+
+@using (Html.BeginForm("AgencySearch", "Home", FormMethod.Post, new { @class = "pure-form pure-form-stacked" }))
+{
+    <fieldset>
+        <legend>Search</legend>
+        <div class="pure-g">
+            <div class="pure-u-1">
+                @Html.LabelFor(m => m.AgencyName)
+                @Html.TextBoxFor(m => m.AgencyName)
+            </div>
+            <div class="pure-u-1">
+                @Html.LabelFor(m => m.Address1)
+                @Html.TextBoxFor(m => m.Address1)
+            </div>
+            <div class="pure-u-1">
+                @Html.LabelFor(m => m.City)
+                @Html.TextBoxFor(m => m.City)
+            </div>
+            <div class="pure-u-1">
+                @Html.LabelFor(m => m.ZipCode)
+                @Html.TextBoxFor(m => m.ZipCode)
+            </div>
+            <div class="pure-u-1">
+                @Html.LabelFor(m => m.PrimaryContact)
+                @Html.TextBoxFor(m => m.PrimaryContact)
+            </div>
+            <div class="pure-u-1">
+                @Html.LabelFor(m => m.SecondaryContact)
+                @Html.TextBoxFor(m => m.SecondaryContact)
+            </div>
+            <div class="pure-u-1">
+                @Html.LabelFor(m => m.Phone)
+                @Html.TextBoxFor(m => m.Phone)
+            </div>
+            <div class="pure-u-1" style="padding: 10px 0 30px 0;">
+                <input type="submit" id="btnAgencySearch" class="pure-button pure-button-primary" style="font-size: 85%;" value="Search" />
+            </div>
+        </div>
+        <div class="pure-u-1">
+            @if (Model != null)
+            {
+                <table id="tbl-agency-results" class="pure-table pure-table-striped">
+                    <thead>
+                        <tr>
+                            <th>Agency Name</th>
+                            <th>Address</th>
+                            <th>City</th>
+                            <th>State</th>
+                            <th>Zip Code</th>
+                            <th>Primary Contact</th>
+                            <th>Secondary Contact</th>
+                            <th>Phone Number</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var agency in Model.Agencies)
+                        {
+                            <tr>
+                                <td>@Html.Raw(agency.Name)</td>
+                                <td>@Html.Raw(agency.Address)</td>
+                                <td>@Html.Raw(agency.City)</td>
+                                <td>@Html.Raw(agency.State)</td>
+                                <td>@Html.Raw(agency.ZipCode)</td>
+                                <td>@agency.PrimaryFirstName @agency.PrimaryMiddleName @agency.PrimaryLastName</td>
+                                <td>@agency.SecondaryFirstName @agency.SecondaryMiddleName @agency.SecondaryLastName</td>
+                                <td>@Html.Raw(agency.PhoneNumber)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/DataTables/jquery.dataTables.min.js")
+    @Scripts.Render("~/Scripts/tcrc.agency-search.js")
+}

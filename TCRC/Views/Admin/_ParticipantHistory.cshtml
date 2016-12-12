@@ -1,0 +1,37 @@
+﻿@model TCRC.Models.Admin.ProcessMemberViewModel
+
+<h4>Participant History</h4>
+<div class="pure-u-1">
+    @if (Model != null)
+    {
+        <table id="table-member-history" class="pure-table pure-table-striped">
+            <thead>
+                <tr>
+                    <th>Paid Date</th>
+                    <th>Expire Date</th>
+                    <th>Assessment Fee</th>
+                    <th>Late Fee</th>
+                    <th>Total</th>
+                    <th>Amount Paid</th>
+                    <th>Payment For</th>
+                    <th>Check Info</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var history in Model.MemberHistories)
+                {
+                    <tr>
+                        <td>@history.PaidDate</td>
+                        <td>@history.ExpireDate</td>
+                        <td>@history.AssessmentFee</td>
+                        <td>@history.LateFee</td>
+                        <td>@history.TotalFee</td>
+                        <td></td>
+                        <td>@history.MemberModeType</td>
+                        <td></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

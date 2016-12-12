@@ -1,0 +1,78 @@
+﻿@model TCRC.Models.Member.DetailsViewModel
+
+<h2>Welcome</h2>
+
+<h4>Payment Notification</h4>
+@if (Model.HasMissingPayment)
+{
+    <p>
+        You have a payment due. To make a payment @Html.ActionLink("click here", "MyProfile").
+    </p>
+} else {
+    <p>
+        None
+    </p>
+}
+
+<h4>Renewal Notification</h4>
+@if (Model.HasPendingRenewal)
+{
+    <p>
+        Your SOT membership or TCRC membership is due for renewal. Please review the dates 
+        below and renew the appropriate membership.
+    </p>
+    <p>
+        SOT @Model.SotIdForRenewal expires on @Model.SotExpireDate.ToShortDateString().
+    </p>
+    <p>
+        TCRC @Model.TcrcIdForRenewal expires on @Model.TcrcExpireDate.ToShortDateString().
+    </p>
+} else {
+    <p> 
+        None
+    </p>
+}
+
+<h4>Assessment Notification</h4>
+@if (Model.HasPendingEmergencyAssessments)
+{
+    <p>
+        You have pending assessments. To view your assessments click here.
+    </p>
+} else {
+    <p>
+        None
+    </p>
+}
+
+<h4>Claims</h4>
+@if (Model.Claims.Count > 0)
+{
+    <div id="member-claims">
+        <table class="pure-table pure-table-striped">
+            <thead>
+                <tr>
+                    <th>Claim Number</th>
+                    <th>Claim Date</th>
+                    <th>Claim Amount</th>
+                    <th>Claim Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var claim in Model.Claims)
+                {
+                    <tr>
+                        <td>@claim.ClaimID</td>
+                        <td>@claim.CreateDate</td>
+                        <td>@claim.ClaimAmountTotal</td>
+                        <td>@claim.Status</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+} else {
+    <p>
+        None
+    </p>
+}

@@ -1,0 +1,48 @@
+﻿@model TCRC.Models.FileClaim.ClaimFormViewModel
+
+<fieldset>
+    <legend>Payment Proof</legend>
+    <p>
+        Input the dollar amount of as many payments as you have made to the travel seller for the transportation and travel services 
+        you are claiming. Use the "Add Another Payment" if you have more than three. Be sure to indicate whether you have Proof of 
+        Payment such as a copy of your credit card statement(s), showing your name and address; a copy of your money order(s) or the 
+        front and back of your canceled check(s), or the front of your check(s) and your account statement(s) showing the check(s) 
+        were paid; evidence of a cash withdrawal for cash payments, and a copy of any receipts; and any travel documents that show 
+        the amount paid. If such proof of payment is not provided, please explain why later. ONLY LIST PAYMENTS WHICH WERE MADE WHEN 
+        EITHER THE PURCHASER OR THE PASSENGER WAS IN THE STATE OF CALIFORNIA AT THE TIME THE PAYMENT WAS MADE.
+    </p>
+    @{
+        var cnt = 0;
+        while (cnt < Model.ClaimPaymentProofs.Count)
+        {
+            @Html.HiddenFor(m => m.ClaimPaymentProofs[cnt].ClaimPaymentProofId)
+            @Html.HiddenFor(m => m.ClaimPaymentProofs[cnt].ClaimId)
+            <div class="pure-g ClaimPaymentProofs">
+                <div class="pure-u-1-4">
+                    @Html.LabelFor(m => m.ClaimPaymentProofs[cnt].PaymentDate, new { @class = "req" })
+                    @Html.TextBoxFor(m => m.ClaimPaymentProofs[cnt].PaymentDate, new { @class = "datepicker payment-date", @readonly = "readonly", required = "required" })
+                    @Html.ValidationMessageFor(mbox => mbox.ClaimPaymentProofs[cnt].PaymentDate)
+                </div>
+                <div class="pure-u-1-4">
+                    @Html.LabelFor(m => m.ClaimPaymentProofs[cnt].PaymentAmount, new { @class = "req" })
+                    @Html.TextBoxFor(m => m.ClaimPaymentProofs[cnt].PaymentAmount, new { @class = "money", required = "required", maxlength = "18" })
+                    @Html.ValidationMessageFor(m => m.ClaimPaymentProofs[cnt].PaymentAmount)
+                </div>
+                <div class="pure-u-1-4">
+                    @Html.LabelFor(m => m.ClaimPaymentProofs[cnt].PaymentForm, new { @class = "req" })
+                    @Html.DropDownListFor(m => m.ClaimPaymentProofs[cnt].PaymentForm, TCRC.Models.FileClaim.ClaimFormViewModel.PaymentForms, new { required = "required" })
+                </div>
+                <div class="pure-u-1-4">
+                    @Html.LabelFor(m => m.ClaimPaymentProofs[cnt].ProofIncluded)
+                    @Html.CheckBoxFor(m => m.ClaimPaymentProofs[cnt].ProofIncluded, new { @class = "pure-checkbox" })
+                    <span style="font-size:.8em;">( **Paid while in CA)</span>
+                </div>
+            </div>
+            cnt++;
+        }
+    }
+    <div style="padding: 10px 0 30px 0; width: 100%;">
+        <input type="button" id="btnAddPayment" class="pure-button" style="font-size: 85%" value="Add Payment" />
+        <input type="button" id="btnRemovePayment" class="pure-button" style="font-size: 85%; margin-left: 10px;" value="Remove Payment" disabled="disabled" />
+    </div>
+</fieldset>

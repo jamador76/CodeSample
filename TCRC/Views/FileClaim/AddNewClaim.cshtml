@@ -1,0 +1,37 @@
+﻿@model TCRC.Models.FileClaim.ClaimFormViewModel
+
+<h2>Add New Claim</h2>
+
+@using (Html.BeginForm("Submit", "FileClaim", FormMethod.Post, new { @class = "pure-form pure-form-stacked" }))
+{
+    @Html.AntiForgeryToken()
+
+    Html.RenderPartial("_ClaimantInfo", Model);
+    <br />
+    Html.RenderPartial("_PaymentProof", Model);
+    <br />
+    Html.RenderPartial("_ServicesPurchased", Model);
+    <br />
+    Html.RenderPartial("_TravelAgency", Model);
+    <br />
+    Html.RenderPartial("_ClaimDetails", Model);
+    <br />
+    Html.RenderPartial("_Documents", Model);
+    <br />
+    Html.RenderPartial("_InsuranceInfo", Model);
+    <br />
+    Html.RenderPartial("_Reimbursement", Model);
+    <br />
+    Html.RenderPartial("_Waiver", Model);
+    <br />
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/mask")
+    @Scripts.Render("~/Scripts/DataTables/jquery.dataTables.min.js")
+    @Scripts.Render("~/Scripts/jquery.xfields.js")
+    @Scripts.Render("~/Scripts/kendo.all.min.js")
+    @Scripts.Render("~/Scripts/tcrc.claim.js")
+}

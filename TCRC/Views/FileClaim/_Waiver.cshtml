@@ -1,0 +1,16 @@
+﻿@model TCRC.Models.FileClaim.ClaimFormViewModel
+
+<div class="">
+    <p>
+        NOTICE OF WAIVER: BY FILING A CLAIM WITH THE TCRC, YOU WAIVE THE RIGHT TO BRING ANY ACTION AT LAW OR EQUITY, 
+        INCLUDING A SMALL CLAIMS COURT ACTION, THAT IS AGAINST THE SAME SELLER OF TRAVEL AND THAT ARISES FROM THE 
+        TRANSACTION THAT IS THE SUBJECT OF THIS CLAIM. See the enclosed instructions and waiver form for further details. 
+        I/WE DECLARE UNDER PENALTY OF PERJURY UNDER THE LAWS OF THE STATE OF CALIFORNIA THAT THE INFORMATION PROVIDED 
+        IN THIS CLAIM IS TRUE AND CORRECT.
+    </p>
+    <div style="text-align: center">
+        @Html.CheckBoxFor(m => m.HasAcceptedTerms) Accept Terms
+        <br /><br />
+        <input type="submit" id="btnSubmit" class="pure-button pure-button-primary" value="Submit" disabled="disabled" />
+    </div>
+</div>

@@ -1,0 +1,87 @@
+﻿@model TCRC.Models.Admin.SearchClaimViewModel
+
+<h2>Search Claim</h2>
+
+@using (Html.BeginForm("SearchClaim", "Admin", FormMethod.Post, new { @class = "pure-form pure-form-stacked" }))
+{
+    <fieldset>
+        <legend></legend>
+
+        <div class="pure-g">
+  
+            <div class="pure-u-1-2">
+                @Html.LabelFor(m => m.TCRCNumber)
+                @Html.TextBoxFor(m => m.TCRCNumber, new { Maxlength = "20" })
+            </div>
+   
+            <div class="pure-u-1-2">
+                 @Html.LabelFor(m => m.AgencyName )
+                @Html.TextBoxFor(m => m.AgencyName , new { Maxlength = "20" })
+            </div>
+            <div class="pure-u-1-2">
+                @Html.LabelFor(m => m.ClaimNumber )
+                @Html.TextBoxFor(m => m.ClaimNumber , new { Maxlength = "20" })
+            </div>
+            <div class="pure-u-1-2">
+                @Html.LabelFor(m => m.ZipCode )
+                @Html.TextBoxFor(m => m.ZipCode , new { Maxlength = "5" })
+            </div>
+            <div class="pure-u-1-2">
+                @Html.LabelFor(m => m.ClaimantName )
+                @Html.TextBoxFor(m => m.ClaimantName , new { Maxlength = "20" })
+            </div>
+            <div class="pure-u-1-2">
+                @Html.LabelFor(m => m.ClaimDate )
+                @Html.TextBoxFor(m => m.ClaimDate , new { @class = "datepicker" })
+            </div>
+            <div class="pure-u-1-2">
+                @Html.LabelFor(m => m.City )
+                @Html.TextBoxFor(m => m.City , new { Maxlength = "20" })
+            </div>
+            <div class="pure-u-1-2">
+                @Html.LabelFor(m => m.ClaimStatus)
+                @Html.DropDownListFor(m => m.ClaimStatus, TCRC.Models.Admin.SearchClaimViewModel.ClaimStatuses)
+            </div>
+            <div class="pure-u-1-1">
+                <input type="submit" class="pure-button pure-button-primary" value="Search"  />&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="submit" class="pure-button pure-button-primary" value="Clear"  />
+            </div>
+
+            <div class="pure-u-1">
+                @if (Model != null)
+                {
+                    <table id="tbl-search-results" class="pure-table pure-table-striped">
+                        <thead>
+                            <tr>
+                                <th>Claim Number</th>
+                                <th>Claimant</th>
+                                <th>Claim Date</th>
+                                <th>Agency</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var claim in Model.Claims)
+                            {
+                                <tr>
+                                    @*<td>@claim.ClaimNumber</td>*@
+                                    <td>@Html.ActionLink(claim.ClaimNumber.ToString(), "Claim", "Admin", new { claimID = claim.ClaimNumber }, null)</td>
+                                    <td>@claim.FirstName @claim.LastName</td>
+                                    <td>@claim.ClaimDate</td>
+                                    <td>@claim.AgencyName</td>
+                                    <td>@claim.Status</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+            </div>
+        </div>
+    </fieldset>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/DataTables/jquery.dataTables.min.js")
+    @Scripts.Render("~/Scripts/tcrc.admin.claim-search.js")
+}

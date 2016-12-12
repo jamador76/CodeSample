@@ -1,0 +1,34 @@
+﻿@model TCRC.Models.FileClaim.ClaimFormViewModel
+
+<fieldset>
+    <legend>Services Purchased</legend>
+    <p class="req">
+        Describe the transportation and/or travel services you purchased, followed by your Scheduled Date of Departure and Scheduled Return Date. 
+        Then state specifically and in detail which of those services were not provided as promised.
+    </p>
+    <div class="pure-g">
+        <div class="pure-u-1">
+            @Html.Raw(HttpUtility.HtmlDecode(@Html.TextAreaFor(m => m.ScheduledServicesPurchased, new { @rows = "5", @cols = "125", required = "required" }).ToHtmlString()))
+            @Html.ValidationMessageFor(m => m.ScheduledServicesPurchased)
+        </div>
+        <div class="pure-u-1-4">
+            @Html.LabelFor(m => m.ScheduledDepartureDate, new { @class = "req" })
+            @Html.TextBoxFor(m => m.ScheduledDepartureDate, new { @class = "datepicker", @readonly = "readonly", required = "required" })
+            @Html.ValidationMessageFor(m => m.ScheduledDepartureDate)
+        </div>
+        <div class="pure-u-3-4">
+            @Html.LabelFor(m => m.ScheduledReturnDate, new { @class = "req" })
+            @Html.TextBoxFor(m => m.ScheduledReturnDate, new { @class = "datepicker", @readonly = "readonly", required = "required" })
+            @Html.ValidationMessageFor(m => m.ScheduledReturnDate)
+        </div>
+        <div class="pure-u-1">
+            <p>
+                Specifically and in detail, describe any payment, refund, or alternative transportation or travel services 
+                that were provided to you in place of the transportation or travel services described in your response above. 
+                If applicable, include here the proof that you requested a credit card charge back from your financial 
+                institution and that it was denied.
+            </p>
+            @Html.Raw(HttpUtility.HtmlDecode(@Html.TextAreaFor(m => m.SpecificDetails, new { @rows = "5", @cols = "125" }).ToHtmlString()))
+        </div>
+    </div>
+</fieldset>

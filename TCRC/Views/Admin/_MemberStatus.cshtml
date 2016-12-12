@@ -1,0 +1,11 @@
+﻿@model TCRC.Models.Admin.ProcessMemberViewModel
+
+<fieldset>
+    <legend>Member Status</legend>
+    <div class="pure-g">
+        <div class="pure-u-1">
+            @Html.LabelFor(m => m.Notes)
+            @Html.TextAreaFor(m => m.Notes, new { rows = "5", cols = "100" })
+        </div>
+    </div>
+</fieldset>

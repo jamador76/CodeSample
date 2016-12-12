@@ -1,0 +1,25 @@
+﻿@model TCRC.Models.Member.RegisterViewModel
+
+<fieldset>
+    <legend>Login Information</legend>
+    <p>
+        Provide the User Name and Password which you will use to access your account.
+    </p>
+    <div class="pure-g">
+        <div class="pure-u-1-3">
+            @Html.LabelFor(m => m.UserName, new { @class = "req" })
+            @Html.TextBoxFor(m => m.UserName, new { required = "required", maxlength = "50" })
+            @Html.ValidationMessageFor(m => m.UserName)
+        </div>
+        <div class="pure-u-1-3">
+            @Html.LabelFor(m => m.Password, new { @class = "req" })
+            @Html.PasswordFor(m => m.Password, new { required = "required" })
+            @Html.ValidationMessageFor(m => m.Password)
+        </div>
+        <div class="pure-u-1-3">
+            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "req" })
+            @Html.PasswordFor(m => m.ConfirmPassword, new { required = "required" })
+            @Html.ValidationMessageFor(m => m.ConfirmPassword)
+        </div>
+    </div>
+</fieldset>

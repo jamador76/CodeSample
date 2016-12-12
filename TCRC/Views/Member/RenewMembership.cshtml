@@ -1,0 +1,32 @@
+﻿@model TCRC.Models.Member.RegisterViewModel
+
+<h2>Renew Membership</h2>
+
+@using (Html.BeginForm("", "", FormMethod.Post, new { @class = "pure-form pure-form-stacked" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(m => m.SotRenewalDate)
+
+    Html.RenderPartial("_PrimaryContact", Model);
+    <br />
+    Html.RenderPartial("_SecondaryContact", Model);
+    <br />
+    Html.RenderPartial("_PrimaryBusiness", Model);
+    <br />
+    Html.RenderPartial("_BusinessAddress", Model);
+    <br />
+    Html.RenderPartial("_Fees", Model);
+    <br />
+    Html.RenderPartial("_TermsAndConditions", Model);
+    <br />
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/mask")
+    @Scripts.Render("~/Scripts/jquery.xfields.js")
+    @Scripts.Render("~/Scripts/tcrc.utilities.js")
+    @Scripts.Render("~/Scripts/tcrc.member-renewal.js")
+}

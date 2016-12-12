@@ -1,0 +1,38 @@
+﻿@using TCRC.Helpers;
+
+<div class="home-menu pure-menu pure-menu-open pure-menu-horizontal" style="text-align: center;">
+  
+    <ul class="pure-menu-children tcrcmenu">
+        @{
+            foreach (var item in NavigationMenuHelper.GetNavigationMenu())
+            {
+                if (!item.isHidden)
+                {
+                    string activeClass = item.isActive == true ? "pure-menu-selected" : "";
+                    if (item.SubMenu != null)
+                    {
+                        activeClass += " pure-menu-can-have-children";
+                    }
+                    <li class="@activeClass">
+                        @if (item.SubMenu != null)
+                        {
+                            @Html.ActionLink(item.Text, item.Action, item.Controller, null, new { @class = "pure-menu-label" })
+
+                            <ul class="pure-menu-children">
+                                @foreach (var submenuItem in item.SubMenu)
+                                {
+                                    <li>@Html.ActionLink(submenuItem.Text, submenuItem.Action, submenuItem.Controller)</li>
+                                }
+                            </ul>
+                        }
+                        else
+                        {
+                            @Html.ActionLink(item.Text, item.Action, item.Controller)
+                        }
+                    </li>
+                }
+            }
+        }
+    </ul>
+        
+</div>

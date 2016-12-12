@@ -1,0 +1,33 @@
+﻿@model TCRC.Models.Member.RegisterViewModel
+
+<fieldset>
+    <legend>Account Search</legend>
+    <div class="pure-g">
+        <div class="pure-u-1">
+            <p>
+                If you have a TCRC #, please enter it here.
+            </p>
+            @Html.LabelFor(m => m.TCRCNumber)
+            @Html.TextBoxFor(m => m.TCRCNumber, new { @class = "numbersOnly", maxlength = "20" })
+        </div>
+        <div style="padding: 10px 0 30px 0; width: 100%;">
+            <input type="button" id="btnTcrcSearch" class="pure-button" style="font-size: 85%" value="Check Now" />
+        </div>
+        <div class="pure-u-1">
+            <div id="tcrcSearchResults"></div>
+        </div>
+        <div class="pure-u-1">
+            <p>
+                If you have a Seller of Travel (SOT) ID, please enter it here.
+            </p>
+            @Html.LabelFor(m => m.SOTNumber)
+            @Html.TextBoxFor(m => m.SOTNumber, new { @class = "numbersOnly", maxlength = "20" })
+        </div>
+        <div style="padding: 10px 0 30px 0; width: 100%;">
+            <input type="button" id="btnSotSearch" class="pure-button" style="font-size: 85%" value="Check Now" />
+        </div>
+        <div class="pure-u-1">
+            <div id="sotSearchResults"></div>
+        </div>
+    </div>
+</fieldset>

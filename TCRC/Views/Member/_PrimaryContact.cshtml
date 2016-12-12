@@ -1,0 +1,48 @@
+﻿@model TCRC.Models.Member.RegisterViewModel
+
+<fieldset>
+    <legend>Primary Contact Information</legend>
+    <p>
+        A primary contact for your company is required. If you wish for a secondary contact to receive emails, 
+        complete that section as well.
+    </p>
+    <div class="pure-g">
+        <div class="pure-u-1-3">
+            @Html.LabelFor(m => m.BusinessContacts[0].FirstName, new { @class = "req" })
+            @Html.TextBoxFor(m => m.BusinessContacts[0].FirstName, new { required = "required", maxlength = "50" })
+            @Html.ValidationMessageFor(m => m.BusinessContacts[0].FirstName)
+        </div>
+        <div class="pure-u-1-3">
+            @Html.LabelFor(m => m.BusinessContacts[0].MiddleName)
+            @Html.TextBoxFor(m => m.BusinessContacts[0].MiddleName, new { maxlength = "50" })
+        </div>
+        <div class="pure-u-1-3">
+            @Html.LabelFor(m => m.BusinessContacts[0].LastName, new { @class = "req" })
+            @Html.TextBoxFor(m => m.BusinessContacts[0].LastName, new { required = "required", maxlength = "50" })
+            @Html.ValidationMessageFor(m => m.BusinessContacts[0].LastName)
+        </div>
+        <div class="pure-u-1-3">
+            @Html.LabelFor(m => m.BusinessContacts[0].Title, new { @class = "req" })
+            @Html.TextBoxFor(m => m.BusinessContacts[0].Title, new { required = "required", maxlength = "50" })
+            @Html.ValidationMessageFor(m => m.BusinessContacts[0].Title)
+        </div>
+        <div class="pure-u-2-3">
+            @Html.LabelFor(m => m.BusinessContacts[0].EmailAddress, new { @class = "req" })
+            @Html.TextBoxFor(m => m.BusinessContacts[0].EmailAddress, new { @class = "pure-input-1-2", required = "required", maxlength = "255" })
+            @Html.ValidationMessageFor(m => m.BusinessContacts[0].EmailAddress)
+        </div>
+        <div class="pure-u-1-3">
+            @Html.LabelFor(m => m.BusinessContacts[0].PhoneNumber, new { @class = "req" })
+            @Html.TextBoxFor(m => m.BusinessContacts[0].PhoneNumber, new { mask = "(999) 999-9999", required = "required" })
+            @Html.ValidationMessageFor(m => m.BusinessContacts[0].PhoneNumber)
+        </div>
+        <div class="pure-u-2-3">
+            @Html.LabelFor(m => m.BusinessContacts[0].FaxNumber)
+            @Html.TextBoxFor(m => m.BusinessContacts[0].FaxNumber, new { mask = "(999) 999-9999" })
+        </div>
+        <div class="pure-u-1-3">
+            @Html.LabelFor(m => m.BusinessContacts[0].PrimaryContactMailRenewal)
+            @Html.CheckBoxFor(m => m.BusinessContacts[0].PrimaryContactMailRenewal, new { @class = "pure-checkbox" })
+        </div>
+    </div>
+</fieldset>

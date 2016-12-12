@@ -1,0 +1,27 @@
+﻿@model TCRC.Models.Admin.ProcessClaimViewModel
+
+<h4>Claim History</h4>
+<div class="pure-u-1">
+    @if (Model != null)
+    {
+        <table id="table-claim-history" class="pure-table pure-table-striped">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var history in Model.ClaimHistories)
+                {
+                    <tr>
+                        <td>@history.CreateDate</td>
+                        <td>@history.ClaimStatusTypeId</td>
+                        <td>@Html.Raw(history.Notes)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

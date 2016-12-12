@@ -1,0 +1,40 @@
+﻿@model TCRC.Models.Admin.ProcessMemberViewModel
+
+@using (Html.BeginForm("", "Admin", FormMethod.Post, new { @class = "pure-form pure-form-stacked" }))
+{
+    <h2>Member</h2>
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.TcrcID)
+
+    Html.RenderPartial("_PrimaryContact", Model);
+    <br />
+    Html.RenderPartial("_SecondaryContact", Model);
+    <br />
+    Html.RenderPartial("_PrimaryBusiness", Model);
+    <br />
+    Html.RenderPartial("_BusinessAddress", Model);
+    <br />
+    Html.RenderPartial("_Fees", Model);
+    <br />
+    Html.RenderPartial("_MemberStatus", Model);
+    <br />
+    <div style="padding: 10px 0 30px 0; width: 100%;">
+        <input type="submit" id="btnUpdate" name="action:updateMember" class="pure-button pure-button-primary" value="Update Member" />
+        <input type="submit" id="btnSubmit" name="action:processMember" class="pure-button pure-button-primary" value="Process Member" />
+    </div>
+    <br />
+    Html.RenderPartial("_ParticipantNotes", Model);
+    <br />
+    Html.RenderPartial("_ParticipantHistory", Model);
+    <br />
+    Html.RenderPartial("_ParticipantCheckHistory", Model);
+    <br />
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/mask")
+    @Scripts.Render("~/Scripts/jquery.xfields.js")
+    @Scripts.Render("~/Scripts/tcrc.member-registration.js")
+}

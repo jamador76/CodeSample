@@ -1,0 +1,32 @@
+﻿@model TCRC.Models.Member.RegisterViewModel
+
+<fieldset>
+    <legend>Terms and Conditions</legend>
+    <div>
+        <p>
+            <strong>By signing this application, you are certifying that you have read, understood, and will comply with all 
+            legal requirements governing participants in the Travel Consumer Restitution Plan, beginning at California Business 
+            and Professions Code section 17550.35 et seq. Specifically, you are acknowledging that under California Business and 
+            Professions Code section 17550.49, the Travel Consumer Restitution Corporation has the "authority and discretion to 
+            determine whether or not to seek recovery from a seller of travel of any amounts paid from the fund" for payments made 
+            to those persons who have purchased travel in California and have sustained a loss as defined in section 17550.37, subdivision (a).</strong>
+        </p>
+        <p>
+            I certify that we meet the requirements for participation in the Restitution Fund per Business & Professions Code 
+            Section 17550.36 of the California Seller of Travel Law. I certify under penalty of perjury under the laws of the 
+            State of California that either: (1) This business has not yet advertised or sold air or sea transportation either 
+            separately or in conjunction with other travel services, or land or water vessel transportation, other than sea 
+            carriage, either separately or in conjunction with other travel services if the total charge to the passenger exceeds 
+            three hundred dollars ($300), the estimated business start date is as shown earlier on this applicaiton; or, (2) The 
+            first date on which this business advertised or sold air or sea transportation either separately or in conjunction 
+            with other travel services, or land or water vessel transportation, other than sea carriage, either separately or in 
+            conjunction with other travel services if the total charge to the passenger exceeds three hundred dollars ($300) was 
+            as shown earlier on this application.
+        </p>
+        <div style="text-align: center;">
+            I accept @Html.CheckBoxFor(m => m.HasAcceptedTerms)
+            <br /><br />
+            <input type="submit" id="btnSubmit" class="pure-button pure-button-primary" value="Submit" disabled="disabled" />
+        </div>
+    </div>
+</fieldset>

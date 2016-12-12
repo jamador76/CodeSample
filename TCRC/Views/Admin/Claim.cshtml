@@ -1,0 +1,43 @@
+﻿@model TCRC.Models.Admin.ProcessClaimViewModel
+
+@using (Html.BeginForm("", "Admin", FormMethod.Post, new { id = "admin-claim-form", @class = "pure-form pure-form-stacked" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.ClaimID)
+    @Html.HiddenFor(m => m.BusinessAddressId)
+    @Html.HiddenFor(m => m.TcrcId)
+
+    Html.RenderPartial("_ClaimantInfo", Model);
+    <br />
+    Html.RenderPartial("_PaymentProof", Model);
+    <br />
+    Html.RenderPartial("~/Views/FileClaim/_ServicesPurchased.cshtml", Model);
+    <br />
+    Html.RenderPartial("~/Views/FileClaim/_TravelAgency.cshtml", Model);
+    <br />
+    Html.RenderPartial("~/Views/FileClaim/_ClaimDetails.cshtml", Model);
+    <br />
+    Html.RenderPartial("_Documents", Model);
+    <br />
+    Html.RenderPartial("~/Views/FileClaim/_InsuranceInfo.cshtml", Model);
+    <br />
+    Html.RenderPartial("~/Views/FileClaim/_Reimbursement.cshtml", Model);
+    <br />
+    Html.RenderPartial("_ClaimStatus", Model);
+    <div style="padding: 10px 0 30px 0; width: 100%;">
+        <input type="submit" id="btnUpdate" name="action:update" class="pure-button pure-button-primary" value="Update Claim" />
+        <input type="submit" id="btnSubmit" name="action:process" class="pure-button pure-button-primary" value="Process Claim" />
+    </div>
+    Html.RenderPartial("_History", Model);
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/mask")
+    @Scripts.Render("~/Scripts/DataTables/jquery.dataTables.min.js")
+    @Scripts.Render("~/Scripts/jquery.xfields.js")
+    @Scripts.Render("~/Scripts/kendo.all.min.js")
+    @Scripts.Render("~/Scripts/tcrc.claim.js")
+    @Scripts.Render("~/Scripts/tcrc.claim-admin.js")
+}

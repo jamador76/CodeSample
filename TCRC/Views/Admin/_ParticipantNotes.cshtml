@@ -1,0 +1,25 @@
+﻿@model TCRC.Models.Admin.ProcessMemberViewModel
+
+<h4>Participant Notes</h4>
+<div class="pure-u-1">
+    @if (Model != null)
+    {
+        <table id="table-member-notes" class="pure-table pure-table-striped">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var note in Model.MemberNotes)
+                {
+                    <tr>
+                        <td>@note.CreateDate</td>
+                        <td>@Html.Raw(note.Notes)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

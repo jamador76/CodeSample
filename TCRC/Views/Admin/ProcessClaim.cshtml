@@ -1,0 +1,10 @@
+﻿@model TCRC.Models.Admin.ProcessClaimViewModel
+
+@using (Html.BeginForm("SubmitProcessedClaim", "Admin", FormMethod.Post, new { @class = "pure-form pure-form-stacked" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div style="padding: 10px 0 30px 0; width: 100%;">
+        <input type="submit" id="btnSubmit" class="pure-button pure-button-primary" value="Process Claim" />
+    </div>
+}

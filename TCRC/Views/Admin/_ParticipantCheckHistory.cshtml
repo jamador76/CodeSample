@@ -1,0 +1,29 @@
+﻿@model TCRC.Models.Admin.ProcessMemberViewModel
+
+<h4>Participant Check History</h4>
+<div class="pure-u-1">
+    @if (Model != null)
+    {
+        <table id="table-member-check-history" class="pure-table pure-table-striped">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Check #</th>
+                    <th>Status</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var check in Model.MemberCheckHistories)
+                {
+                    <tr>
+                        <td>@check.CreateDate</td>
+                        <td>@check.CheckNumber</td>
+                        <td>@check.Status</td>
+                        <td>@check.Notes</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

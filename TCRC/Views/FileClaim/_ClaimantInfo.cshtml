@@ -1,0 +1,81 @@
+﻿@model TCRC.Models.FileClaim.ClaimFormViewModel
+
+<fieldset>
+    <legend>Claimant Information</legend>
+    <p>
+
+    </p>
+    <div class="pure-g">
+        <div class="pure-u-1-3">
+            @Html.LabelFor(m => m.FirstName, new { @class = "req" })
+            @Html.TextBoxFor(m => m.FirstName, new { required = "required", maxlength = "50" })
+            @Html.ValidationMessageFor(m => m.FirstName)
+        </div>
+        <div class="pure-u-1-3">
+            @Html.LabelFor(m => m.MiddleName)
+            @Html.TextBoxFor(m => m.MiddleName, new { maxlength = "50" })
+        </div>
+        <div class="pure-u-1-3">
+            @Html.LabelFor(m => m.LastName, new { @class = "req" })
+            @Html.TextBoxFor(m => m.LastName, new { required = "required", maxlength = "50" })
+            @Html.ValidationMessageFor(m => m.LastName)
+        </div>
+        <div class="FormElementGroup" style="display: none; width: 100%;">
+            <div class="pure-u-1-3">
+                @Html.TextBoxFor(m => m.ClaimPassengers[0].FirstName, new { maxlength = "50" })
+            </div>
+            <div class="pure-u-1-3">
+                @Html.TextBoxFor(m => m.ClaimPassengers[0].MiddleName, new { maxlength = "50" })
+            </div>
+            <div class="pure-u-1-3">
+                @Html.TextBoxFor(m => m.ClaimPassengers[0].LastName, new { maxlength = "50" })
+            </div>
+        </div>
+        <div class="pure-u-1" style="padding: 10px 0 30px 0;">
+            <input type="button" id="btnAddPassenger" class="pure-button" style="font-size: 85%;" value="Add Passenger" />
+            <input type="button" id="btnRemovePassenger" class="pure-button" style="font-size: 85%; margin-left: 10px;" value="Remove Passenger" disabled="disabled" />
+        </div>
+        <div class="pure-u-1-1">
+            @Html.LabelFor(m => m.Address, new { @class = "req" })
+            @Html.TextBoxFor(m => m.Address, new { @class = "pure-input-2-3", required = "required", maxlength = "255" })
+            @Html.ValidationMessageFor(m => m.Address)
+        </div>
+        <div class="pure-u-1-3">
+            @Html.LabelFor(m => m.City, new { @class = "req" })
+            @Html.TextBoxFor(m => m.City, new { required = "required", maxlength = "50" })
+            @Html.ValidationMessageFor(m => m.City)
+        </div>
+        <div class="pure-u-1-3">
+            @Html.LabelFor(m => m.State, new { @class = "req" })
+            @Html.DropDownListFor(m => m.State, new ListOfStates(), new { @class = "pure-u-11-12", required = "required" })
+            @Html.ValidationMessageFor(m => m.State)
+        </div>
+        <div class="pure-u-1-12">
+            @Html.LabelFor(m => m.ZipCode, new { @class = "req" })
+            @Html.TextBoxFor(m => m.ZipCode, new { @class = "pure-input-1", mask = "99999", maxlength = "5", required = "required" })
+            @Html.ValidationMessageFor(m => m.ZipCode)
+        </div>
+        <div class="pure-u-1-24" style="text-align: center;">
+            <label>&nbsp;</label>
+            -
+        </div>
+        <div class="pure-u-4-24">
+            <label>&nbsp;</label>
+            @Html.TextBoxFor(m => m.ZipCode4, new { @class = "pure-input-1-3", mask = "9999", maxlength = "4" })
+        </div>
+        <div class="pure-u-1-3">
+            @Html.LabelFor(m => m.PhoneNumberPrimary, new { @class = "req" })
+            @Html.TextBoxFor(m => m.PhoneNumberPrimary, new { mask = "(999) 999-9999", required = "required" })
+            @Html.ValidationMessageFor(m => m.PhoneNumberPrimary)
+        </div>
+        <div class="pure-u-2-3">
+            @Html.LabelFor(m => m.PhoneNumberSecondary)
+            @Html.TextBoxFor(m => m.PhoneNumberSecondary, new { mask = "(999) 999-9999" })
+        </div>
+        <div class="pure-u-1-3">
+            @Html.LabelFor(m => m.EmailAddress, new { @class = "req" })
+            @Html.TextBoxFor(m => m.EmailAddress, new { @class = "pure-input-1", maxlength = "255", required = "required" })
+            @Html.ValidationMessageFor(m => m.EmailAddress)
+        </div>
+    </div>
+</fieldset>

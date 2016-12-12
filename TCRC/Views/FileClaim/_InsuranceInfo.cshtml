@@ -1,0 +1,28 @@
+﻿@model TCRC.Models.FileClaim.ClaimFormViewModel
+
+<fieldset>
+    <legend>Insurance Details</legend>
+    <p>
+        Did you purchase any trip cancellation or interruption insurance for this trip? Please check - Yes - if you did. If you did, 
+        please provide the following information and ATTACH LATER A COPY OF THE POLICY OR CERTIFICATE OF INSURANCE OR OTHER EVIDENCE OF COVERAGE.
+        @Html.CheckBoxFor(m => m.HasPurchasedInsurance) Yes
+    </p>
+    <div id="InsuranceDetails" class="pure-g" style="display: none;">
+        <div class="pure-u-1-3">
+            @Html.LabelFor(m => m.InsurancePurchaseDate)
+            @Html.TextBoxFor(m => m.InsurancePurchaseDate, new { @class = "datepicker", @readonly = "readonly" })
+        </div>
+        <div class="pure-u-2-3">
+            @Html.LabelFor(m => m.InsurancePurchaseAmount)
+            @Html.TextBoxFor(m => m.InsurancePurchaseAmount)
+        </div>
+        <div class="pure-u-1">
+            @Html.LabelFor(m => m.InsurancePurchasedFrom)
+            @Html.TextBoxFor(m => m.InsurancePurchasedFrom, new { @class = "pure-input-3-4", maxlength = "255" })
+        </div>
+        <div class="pure-u-1">
+            @Html.LabelFor(m => m.Insurer)
+            @Html.TextBoxFor(m => m.Insurer, new { @class = "pure-input-3-4", maxlength = "255" })
+        </div>
+    </div>
+</fieldset>

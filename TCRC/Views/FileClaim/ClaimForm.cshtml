@@ -1,0 +1,73 @@
+﻿@model TCRC.Models.FileClaim.ClaimFormViewModel
+
+<h2>Travel Consumer Restitution Fund Claim Form</h2>
+<p>
+    <strong>If you are having trouble filing a claim online, you may download a claim packet by visiting the download page in the 'File A Claim' Menu.
+        Complete and sign the form, then mail it to the address on the claim form along with your check for $35.00 payable to TCRC.</strong>
+</p>
+<h3>Special Notice to Consumers Affected by Cruise Line Closures & Reorganizations
+</h3>
+<p>
+    The Seller of Travel Law provides that the only losses recoverable through the Travel Consumer Restitution Fund are those incurred in a transaction 
+    with a registered seller of travel that is also a TCRC participant. Ocean carriers, however, are not sellers of travel as defined by Business and 
+    Professions Code section 17550.1.
+</p>
+<p>
+    For more information on filing a claim against an ocean carrier, please visit the Federal Maritime Commission’s website: 
+    <a href="http://www.fmc.gov">http://www.fmc.gov</a>.
+</p>
+<p>
+    The following steps will guide you through the File a Claim process. By California statue, 
+    Section 17550.47, your claim must meet the following criteria:
+</p>
+<ol>
+    <li>The seller of travel you have a claim against must have been a participant in the Travel Consumer Restitution Corporations (TCRC) Fund at the 
+        time of sale, and the seller of travel must have been registered with the State of California, Seller of Travel Program.
+    </li>
+    <li>Your loss must have been more than $50.00.
+    </li>
+    <li>Your claim must be filed within one year after the scheduled date of completion of travel.
+    </li>
+</ol>
+<p>
+    If you paid any part of your claim with a credit card, TCRC requires that you submit proof that you have requested a charge back for all payments 
+    made from the financial institution(s). @* Please refer to our Frequently Asked Questions (FAQ) titled "INFORMATION ABOUT CREDIT CARD CHARGEBACKS" 
+    found on the Home page of the TCRC web site.*@
+</p>
+<p>
+    When you complete your claim, you will need to provide (i.e. upload online) or mail in supporting documentation for your claim.
+</p>
+
+@using (Html.BeginForm("Submit", "FileClaim", FormMethod.Post, new { @class = "pure-form pure-form-stacked" }))
+{
+    @Html.AntiForgeryToken()
+
+    Html.RenderPartial("_ClaimantInfo", Model);
+    <br />
+    Html.RenderPartial("_PaymentProof", Model);
+    <br />
+    Html.RenderPartial("_ServicesPurchased", Model);
+    <br />
+    Html.RenderPartial("_TravelAgency", Model);
+    <br />
+    Html.RenderPartial("_ClaimDetails", Model);
+    <br />
+    Html.RenderPartial("_Documents", Model);
+    <br />
+    Html.RenderPartial("_InsuranceInfo", Model);
+    <br />
+    Html.RenderPartial("_Reimbursement", Model);
+    <br />
+    Html.RenderPartial("_Waiver", Model);
+    <br />
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/mask")
+    @Scripts.Render("~/Scripts/DataTables/jquery.dataTables.min.js")
+    @Scripts.Render("~/Scripts/jquery.xfields.js")
+    @Scripts.Render("~/Scripts/kendo.all.min.js")
+    @Scripts.Render("~/Scripts/tcrc.claim.js")
+}

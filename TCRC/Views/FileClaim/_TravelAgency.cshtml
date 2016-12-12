@@ -1,0 +1,31 @@
+﻿@model TCRC.Models.FileClaim.ClaimFormViewModel
+
+<fieldset>
+    <legend>Travel Seller</legend>
+    <p>
+        Search and then select the travel agency against whom you intend to file the claim.
+    </p>
+    <div class="pure-g">
+        <div class="pure-u-1-4">
+            @Html.LabelFor(m => m.TCRCNumber)
+            @Html.TextBoxFor(m => m.TCRCNumber)
+            @Html.ValidationMessageFor(m => m.BusinessAddressId)
+        </div>
+        <div class="pure-u-1-4">
+            @Html.LabelFor(m => m.SOTNumber)
+            @Html.TextBoxFor(m => m.SOTNumber)
+        </div>
+        <div class="pure-u-1-4">
+            @Html.LabelFor(m => m.AgencyName)
+            @Html.TextBoxFor(m => m.AgencyName)
+        </div>
+        <div class="pure-u-1-4">
+            @Html.LabelFor(m => m.AgencyCity)
+            @Html.TextBoxFor(m => m.AgencyCity)
+        </div>
+        <div style="padding: 10px 0 30px 0; width: 100%;">
+            <input type="button" id="btnSellerSearch" class="pure-button" style="font-size: 85%" value="Search" />
+        </div>
+        @Html.Partial("~/Views/FileClaim/_SellerOfTravel.cshtml", new List<TCRC.Models.Member.BusinessAddress>())
+    </div>
+</fieldset>

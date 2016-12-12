@@ -1,0 +1,43 @@
+﻿@model TCRC.Models.Member.RegisterViewModel
+
+<fieldset>
+    <legend>Primary Business Information</legend>
+    <p>
+        Enter the legal name of the registering Seller of Travel on behalf of which this application is made. Use the business name of the 
+        corporation, partnership, or sole proprietor. (Your answer should be the same as that for Question 3 of the Seller of Travel 
+        Registration Application.) Input your business Start Date. The amount of your initial assessment and any Late Fees are determined 
+        by your “business start date,” which is the first time your business advertised, offered or sold air or sea transportation either 
+        separately or in conjunction with other travel services, or land or water vessel transportation, other than sea carriage, either 
+        separately or in conjunction with other travel services if the total charge to the passenger exceeds three hundred dollars ($300). 
+        Additionally, list all other fictitious business names (D.B.A.) under which you do business or intend to do business as a Seller of 
+        Travel in California. (Your answer should be the same as that for Question 5 of the Seller of Travel Registration Application.)
+    </p>
+    <div class="pure-g">
+        <div class="pure-u-1-3">
+            @Html.LabelFor(m => m.LegalBusinessName, new { @class = "req" })
+            @Html.TextBoxFor(m => m.LegalBusinessName, new { required = "required", maxlength = "100" })
+            @Html.ValidationMessageFor(m => m.LegalBusinessName)
+        </div>
+        <div class="pure-u-2-3">
+            @Html.LabelFor(m => m.LegalBusinessStartDate, new { @class = "req" })
+            @Html.TextBoxFor(m => m.LegalBusinessStartDate, new { @class = "datepicker", @readonly = "readonly" })
+            @Html.ValidationMessageFor(m => m.LegalBusinessStartDate)
+        </div>
+        <div class="pure-u-1">
+            @Html.LabelFor(m => m.ArcIatan)
+            @Html.TextBoxFor(m => m.ArcIatan, new { maxlength = "50" })
+        </div>
+        <hr />
+        <div class="pure-u-1">
+            <h5>Additional DBA Names</h5>
+        </div>
+        <div class="pure-u-1 FormElementGroupDBAs">
+            @Html.LabelFor(m => m.BusinessDbaNames[0].DbaName)
+            @Html.TextBoxFor(m => m.BusinessDbaNames[0].DbaName, new { @class = "pure-input-1-2", maxlength = "50" })
+        </div>
+        <div class="pure-u-1" style="padding: 10px 0 30px 0;">
+            <input type="button" id="btnAddDBA" class="pure-button" style="font-size: 85%" value="Add DBA Name" />
+            <input type="button" id="btnRemoveDBA" class="pure-button" style="font-size: 85%; margin-left: 10px;" value="Remove DBA" disabled="disabled" />
+        </div>
+    </div>
+</fieldset>

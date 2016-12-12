@@ -1,0 +1,28 @@
+﻿@model IEnumerable<TCRC.Models.Member.BusinessAddress>
+
+<div id="tblSOT" class="pure-u-1">
+    @if (Model.Count() != 0)
+    {
+        <table id="claim-sot" class="pure-table pure-table-striped">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Agency Name</th>
+                    <th>Address</th>
+                    <th>Telephone</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var businessAddress in Model)
+                {
+                    <tr>
+                        <td>@Html.RadioButton("BusinessAddressId", businessAddress.BusinessAddressId, new { @class = "pure-radio", id = "claimSeller" + businessAddress.BusinessAddressId, required = "required" })</td>
+                        <td>@Html.Raw(businessAddress.AgencyName)</td>
+                        <td>@Html.Raw(businessAddress.Address1)</td>
+                        <td>@Html.Raw(businessAddress.PhoneNumber)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />  <!--added by stephen d 2014-12-15 to fix IE issues  -->
+        <meta charset="utf-8" />
+        <title>Travel Consumer Restitution Corporation</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        @*<meta name="viewport" content="width=device-width" />*@
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        @Styles.Render("~/Content/css")
+        @Styles.Render("~/Content/jquery.dataTables.min.css")
+        @Styles.Render("~/Content/kendo/kendo.common.min.css")
+        @Styles.Render("~/Content/kendo/kendo.default.min.css")
+        <!--[if lte IE 8]>
+            <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-old-ie-min.css">
+        <![endif]-->
+        <!--[if gt IE 8]><!-->
+            <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css">
+        <!--<![endif]-->
+    </head>
+    <body class="pure-skin-bluecomp">
+        <div id="page">
+            <div class="header">
+                <div id="logo-background">
+                    <div id="logo-container">
+                        <img id="logo" title="TCRC" src="~/Images/TCRC_Logo.png" alt="TCRC" style="float: left;" />
+                        @if (Request.IsAuthenticated)
+                        {
+                            <div style="float: left; width: 550px; text-align: right;">
+                                Welcome @User.Identity.Name | @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", style = "display: inline;" })) {
+                                    @Html.AntiForgeryToken()
+                                    <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+                @Html.Partial("_NavigationMenu")
+            </div>
+            <div class="content">
+                @RenderBody()
+            </div>
+            <div class="footer">
+                <p>
+                    Travel Consumer Restitution Corporation   P.O. Box 6001  Larkspur, CA 94977-6001 (866)301-3004  FAX(415)256-9756
+                </p>
+            </div>
+        </div>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/modernizr")
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

@@ -1,0 +1,23 @@
+﻿@model TCRC.Models.FileClaim.ClaimFormViewModel
+
+<fieldset>
+    <legend>Claim Details</legend>
+    <p>
+        STATE THE DOLLAR AMOUNT OF YOUR CLAIM AND THE BASIS FOR IT. You must state the amount of your claim in dollars 
+        and specifically describe why you believe you are owed a refund in that amount by the travel seller against whom 
+        your claim is made. If you are seeking reimbursement for only part of the travel services you purchased, please 
+        list the specific services you did not receive and the amount of reimbursement you seek for each.
+    </p>
+    <div class="pure-g">
+        <div class="pure-u-1">
+            @Html.LabelFor(m => m.ClaimAmountTotal, new { @class = "req" })
+            @Html.TextBoxFor(m => m.ClaimAmountTotal, new {@class = "money", required = "required", maxlength = "18" })
+            @Html.ValidationMessageFor(m => m.ClaimAmountTotal)
+        </div>
+        <div class="pure-u-1">
+            @Html.LabelFor(m => m.ClaimAmountBasis, new { @class = "req" })
+            @Html.Raw(HttpUtility.HtmlDecode(@Html.TextAreaFor(m => m.ClaimAmountBasis, new { @rows = "5", @cols = "125", required = "required" }).ToHtmlString()))
+            @Html.ValidationMessageFor(m => m.ClaimAmountBasis)
+        </div>
+    </div>
+</fieldset>

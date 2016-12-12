@@ -1,0 +1,72 @@
+﻿@model TCRC.Models.PaymentViewModel
+
+<h2>My Profile</h2>
+
+@using (Html.BeginForm("SubmitPayment", "Member", FormMethod.Post, new { @class = "pure-form pure-form-stacked" }))
+{
+    @Html.AntiForgeryToken()
+
+    <fieldset>
+        <legend>Participant Payment</legend>
+        <div class="pure-g">
+            <div class="pure-u-1">
+                @Html.LabelFor(m => m.AssessmentFee)
+                @Html.TextBoxFor(m => m.AssessmentFee, new { @readonly = "readonly" })
+            </div>
+            <div class="pure-u-1">
+                @Html.LabelFor(m => m.LateFee)
+                @Html.TextBoxFor(m => m.LateFee, new { @readonly = "readonly" })
+            </div>
+            <div class="pure-u-1">
+                @Html.LabelFor(m => m.TotalAmountDue)
+                @Html.TextBoxFor(m => m.TotalAmountDue, new { @readonly = "readonly" })
+            </div>
+            <div class="pure-u-1">
+                @Html.LabelFor(m => m.PaymentMethod)
+                @Html.RadioButtonFor(m => m.PaymentMethod, "credit") Credit Card @Html.RadioButtonFor(m => m.PaymentMethod, "check", new { @checked = true }) Check
+            </div>
+            <div id="payment-check">
+                <div class="pure-u-1">
+                    @Html.LabelFor(m => m.CheckNumber)
+                    @Html.TextBoxFor(m => m.CheckNumber, new { required = "required" })
+                </div>
+                <div class="pure-u-1">
+                    @Html.LabelFor(m => m.CheckAmount)
+                    @Html.TextBoxFor(m => m.CheckAmount, new { required = "required" })
+                </div>
+            </div>
+            <div id="payment-credit" style="display: none;">
+                <div class="pure-u-1">
+                    @Html.LabelFor(m => m.CCFirstName)
+                    @Html.TextBoxFor(m => m.CCFirstName)
+                </div>
+                <div class="pure-u-1">
+                    @Html.LabelFor(m => m.CCLastName)
+                    @Html.TextBoxFor(m => m.CCLastName)
+                </div>
+                <div class="pure-u-1">
+                    @Html.LabelFor(m => m.CCNumber)
+                    @Html.TextBoxFor(m => m.CCNumber)
+                </div>
+                <div class="pure-u-1">
+                    @Html.LabelFor(m => m.CCExpirationDate)
+                    @Html.TextBoxFor(m => m.CCExpirationDate)
+                </div>
+                <div class="pure-u-1">
+                    @Html.LabelFor(m => m.CVVNumber)
+                    @Html.TextBoxFor(m => m.CVVNumber)
+                </div>
+            </div>
+            <div class="pure-u-1" style="padding-top: 20px;">
+                <input type="submit" id="btnSubmit" class="pure-button pure-button-primary" value="Process Payment" />
+            </div>
+        </div>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/mask")
+    @Scripts.Render("~/Scripts/tcrc.payment.js")
+}

@@ -1,0 +1,45 @@
+﻿@model TCRC.Models.Member.RegisterViewModel
+
+<h2>Register</h2>
+<p>
+    <strong>IMPORTANT: </strong>If you sell to California consumers and either (1) your principal place of business is in California and you do 
+    business in California, or (2) your stock is listed on a national securities exchange or market quotation system, you are required to file 
+    this form and pay an assessment as calculated in Section 4. You will not be allowed to register as a Seller of Travel unless you participate 
+    in the Travel Consumer Restitution Fund. <strong>Your registration with TCRC does not constitute registration with the State of California, 
+    Seller of Travel Program.</strong>
+</p>
+<p>
+    Before registering as a new participant please read the following. Have you previously been registered with the TCRC and Seller of Travel? 
+    If yes, please use the search function below to bring up your account. If no, please fill out the form below.
+</p>
+
+@using (Html.BeginForm("Register", "Member", FormMethod.Post, new { @class = "pure-form pure-form-stacked" }))
+{
+    @Html.AntiForgeryToken()
+
+    Html.RenderPartial("_MemberSearch", Model);
+    <br />
+    Html.RenderPartial("_PrimaryContact", Model);
+    <br />
+    Html.RenderPartial("_SecondaryContact", Model);
+    <br />
+    Html.RenderPartial("_LoginInfo", Model);
+    <br />
+    Html.RenderPartial("_PrimaryBusiness", Model);
+    <br />
+    Html.RenderPartial("_BusinessAddress", Model);
+    <br />
+    Html.RenderPartial("_Fees", Model);
+    <br />
+    Html.RenderPartial("_TermsAndConditions", Model);
+    <br />
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/mask")
+    @Scripts.Render("~/Scripts/jquery.xfields.js")
+    @Scripts.Render("~/Scripts/tcrc.utilities.js")
+    @Scripts.Render("~/Scripts/tcrc.member-registration.js")
+}

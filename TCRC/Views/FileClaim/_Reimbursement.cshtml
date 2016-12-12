@@ -1,0 +1,21 @@
+﻿@model TCRC.Models.FileClaim.ClaimFormViewModel
+
+<fieldset>
+    <legend>Reimbursement Details</legend>
+    <p>
+        Do you have any other potential sources of reimbursement for your loss (such as homeowner’s or renter’s insurance) other than 
+        the seller of travel or trip cancellation or interruption insurance identified above? Please check – Yes- if you do. If so, 
+        also provide the identifying and explanatory information about that source of reimbursement, and ENCLOSE A COPY OF THE POLICY 
+        OR CERTIFICATE OF INSURANCE OR OTHER INFORMATION describing it. @Html.CheckBoxFor(m => m.HasOtherReimbursement) Yes
+    </p>
+    <div id="ReimbursementDetails" class="pure-g" style="display: none;">
+        <div class="pure-u-1">
+            @Html.LabelFor(m => m.ReimbursementSource)
+            @Html.TextBoxFor(m => m.ReimbursementSource, new { @class = "pure-input-3-4" })
+        </div>
+        <div class="pure-u-1">
+            @Html.LabelFor(m => m.ReimbursementDetails)
+            @Html.TextAreaFor(m => m.ReimbursementDetails, new { @rows = "5", @cols = "125" })
+        </div>
+    </div>
+</fieldset>

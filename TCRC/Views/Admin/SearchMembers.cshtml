@@ -1,0 +1,82 @@
+﻿@model TCRC.Models.Admin.MemberSearchViewModel
+
+
+<h2>Administration - Search Participants</h2>
+
+@using (Html.BeginForm("SearchMembers", "Admin", FormMethod.Post, new { @class = "pure-form pure-form-stacked" }))
+{
+    <fieldset>
+        <legend></legend>
+        <p>
+            Enter your search criteria in one or more fields and click Search.
+        </p>
+        <div class="pure-g">
+            <div class="pure-u-1-2">
+
+                @Html.LabelFor(m => m.TCRCNumber, "TCRC Number")
+                @Html.TextBoxFor(m => m.TCRCNumber, new { @class = "numbersOnly", maxlength = "20" })
+            </div>
+            <div class="pure-u-1-2">
+                @Html.LabelFor(m => m.AgencyName, "TCRC Agency Name")
+                @Html.TextBoxFor(m => m.AgencyName, new { Maxlength = "20" })
+            </div>
+            <div class="pure-u-1-2">
+
+                @Html.LabelFor(m => m.ParticipantFirstName, "Participant First Name")
+                @Html.TextBoxFor(m => m.ParticipantFirstName, new { maxlength = "20" })
+            </div>
+            <div class="pure-u-1-2">
+                @Html.LabelFor(m => m.ParticipantLastName, "Participant Last Name")
+                @Html.TextBoxFor(m => m.ParticipantLastName, new { Maxlength = "20" })
+            </div>
+            <div class="pure-u-1">
+                @Html.CheckBoxFor(m => m.IsParticipantPaymentProcessIncomplete)
+                @Html.LabelFor(m => m.IsParticipantPaymentProcessIncomplete)
+            </div>
+        </div>
+
+        <div class="pure-u-1-1">
+            <input type="submit" class="pure-button pure-button-primary" value="Search" />&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="submit" class="pure-button pure-button-primary" value="Clear" />
+        </div>
+
+        <div class="pure-u-1">
+            @if (Model != null)
+            {
+                <table id="tbl-search-results" class="pure-table pure-table-striped">
+                    <thead>
+                        <tr>
+                            <th>TCRC Number</th>
+                            <th>Participant</th>
+                            <th>Agency</th>
+                            <th>TCRC Expiration</th>
+                            <th>SOT Expiration</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var member in Model.Members)
+                        {
+                            <tr>
+                                @*<td>@member.TcrcNumber</td>*@
+                                <td>@Html.ActionLink(member.TcrcNumber.ToString(), "Member", "Admin", new { tcrcID = member.TcrcNumber }, null)</td>
+                                <td>@member.FirstName @member.LastName</td>
+                                <td>@member.AgencyName</td>
+                                <td>@member.TcrcExpirationDate</td>
+                                <td>@member.SotExpirationDate</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+    </fieldset>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/DataTables/jquery.dataTables.min.js")
+    @Scripts.Render("~/Scripts/tcrc.admin.member-search.js")
+}
+
